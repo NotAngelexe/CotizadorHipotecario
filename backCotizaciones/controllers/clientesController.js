@@ -12,13 +12,31 @@ class ClienteController{
   }
   baja(req,res){
   }
-  alta(req,res){
-    try{
-      db.query('INSERT INTO cotizacion.cliente () VALUES ();')
-    }catch(err){
-      res.status(500).send(error);
+  alta(req, res) {
+    try {
+      const { nombre, rfc, edad, sueldo, fecha_baja, telefono, correo, password } = req.body;
+  
+      db.query(
+        `INSERT INTO cotizaciones.cliente 
+          (nombre, rfc, edad, sueldo, fecha_alta, fecha_baja, fecha_modificacion, telefono, correo, password) 
+         VALUES (?, ?, ?, ?, NOW(), ?, NOW(), ?, ?, ?);`,
+        [nombre, rfc, edad, sueldo, fecha_baja, telefono, correo, password],
+        (error, results) => {
+          if (error) {
+            console.error("SQL Error: ", error.sqlMessage);
+            res.status(500).json({ error: error.sqlMessage });
+          } else {
+            console.log("Record inserted successfully");
+            res.status(201).json({ message: "Record inserted successfully", results });
+          }
+        }
+      );
+  
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
   }
+  
 }
 
 export default ClienteController;
