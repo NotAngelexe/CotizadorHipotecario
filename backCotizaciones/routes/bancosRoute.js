@@ -10,5 +10,5 @@ router.post('/', (req, res) => bancoController.alta(req, res));
 router.route('/:id')
   .get((req, res) => bancoController.consultaByID(req, res))
   .put((req, res) => bancoController.modificar(req, res));
-
+router.get('/:id/plazos', bancoController.getPlazosByBanco);
 export default router;

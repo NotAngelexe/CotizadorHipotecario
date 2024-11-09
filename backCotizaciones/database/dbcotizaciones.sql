@@ -37,7 +37,7 @@ CREATE TABLE `administrador` (
 
 LOCK TABLES `administrador` WRITE;
 /*!40000 ALTER TABLE `administrador` DISABLE KEYS */;
-INSERT INTO `administrador` VALUES (1,'admin','admin','admin@gmail.com');
+INSERT INTO `administrador` VALUES (1,'admin','admin','administrador@gmail.com');
 /*!40000 ALTER TABLE `administrador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (3,'Ana Rodriguez','ANRO123456789',22,45000,'2024-11-08',NULL,'2024-11-08',5541234577,'ana.rodriguez@example.com','ana123'),(4,'Jose Angel Flores Esparza','JOES123456789',22,45000,'2024-11-08',NULL,'2024-11-08',5541234577,'esparza@example.com','esparza123'),(5,'Jose esparza@example.com','JOEZ123456789',22,45000,'2024-11-08',NULL,'2024-11-08',5541234577,'esparza@example.com','esparza123');
+INSERT INTO `cliente` VALUES (3,'Ana Rodriguez','ANRO123456789',22,51609.44,'2024-11-08',NULL,'2024-11-09',5541234577,'ana.rodriguez@example.com','ana123'),(4,'Jose Angel Flores Esparza','JOES123456789',22,45000,'2024-11-08',NULL,'2024-11-08',5541234577,'esparza@example.com','esparza123'),(5,'Jose esparza@example.com','JOEZ123456789',22,45000,'2024-11-08',NULL,'2024-11-08',5541234577,'esparza@example.com','esparza123');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,6 +170,7 @@ CREATE TABLE `prestamo` (
   `tipo_prestamo` int NOT NULL,
   `id_banco` int NOT NULL,
   `cliente_id` int NOT NULL,
+  `mensualidades` int NOT NULL,
   PRIMARY KEY (`id_prestamo`),
   KEY `fk_prestamo_tipo_prestamo1_idx` (`tipo_prestamo`),
   KEY `fk_prestamo_banco1_idx` (`id_banco`),
@@ -177,7 +178,7 @@ CREATE TABLE `prestamo` (
   CONSTRAINT `fk_prestamo_banco1` FOREIGN KEY (`id_banco`) REFERENCES `banco` (`id_banco`),
   CONSTRAINT `fk_prestamo_cliente1` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id_cliente`),
   CONSTRAINT `fk_prestamo_tipo_prestamo1` FOREIGN KEY (`tipo_prestamo`) REFERENCES `tipo_prestamo` (`id_tipo_prestamo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,6 +187,7 @@ CREATE TABLE `prestamo` (
 
 LOCK TABLES `prestamo` WRITE;
 /*!40000 ALTER TABLE `prestamo` DISABLE KEYS */;
+INSERT INTO `prestamo` VALUES (1,'2024-11-09',NULL,'2024-11-09',2000000.7,20643.775072839817,1,1,3,240),(2,'2024-11-09',NULL,'2024-11-09',2000000.789824705,20643.776,2,1,3,0);
 /*!40000 ALTER TABLE `prestamo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,7 +211,7 @@ CREATE TABLE `tipo_prestamo` (
 
 LOCK TABLES `tipo_prestamo` WRITE;
 /*!40000 ALTER TABLE `tipo_prestamo` DISABLE KEYS */;
-INSERT INTO `tipo_prestamo` VALUES (1,'casa'),(2,'salario');
+INSERT INTO `tipo_prestamo` VALUES (1,'casa'),(2,'sueldo');
 /*!40000 ALTER TABLE `tipo_prestamo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -222,4 +224,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-08 23:17:36
+-- Dump completed on 2024-11-09 11:55:12

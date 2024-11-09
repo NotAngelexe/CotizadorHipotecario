@@ -32,6 +32,34 @@ class BancoController {
     }
   }
 
+  getPlazosByBanco(req, res) {
+    const { id } = req.params;
+
+    try {
+      db.query(
+        `SELECT plazo.id_plazo, plazo.anios
+         FROM cotizaciones.banco_plazo
+         JOIN cotizaciones.plazo ON banco_plazo.id_plazo = plazo.id_plazo
+         WHERE banco_plazo.id_banco = ?`,
+        [id],
+        (err, rows) => {
+          if (err) {
+            res.status(400).json({ error: err.sqlMessage });
+            return;
+          }
+          if (rows.length === 0) {
+            res.status(404).json({ message: "No hay plazos para este banco" });
+            return;
+          }
+          res.status(200).json(rows);
+        }
+      );
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
+
   // Crear nuevo banco
   alta(req, res) {
     const { nombre_banco, interes, enganche } = req.body;
@@ -74,6 +102,8 @@ class BancoController {
       res.status(500).json({ error: err.message });
     }
   }
+
+
 
   // // Eliminar banco
   // baja(req, res) {
