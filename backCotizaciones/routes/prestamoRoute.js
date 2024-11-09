@@ -1,23 +1,14 @@
 import express from 'express';
 const router = express.Router();
+import PrestamoController from '../controllers/prestamoController.js';
 
-router.get('/', (req, res) => {
-  res.json({ msg: 'Prestamo' });
-});
+const prestamoController = new PrestamoController();
 
-router.put('/',(req,res)=>{
- res.json({msg:'Ingreso Prestamos'})
-});
-
-router.route("/:id")
-.get((req, res) => {
-  res.json({ msg: 'has consultado prestamo'});
-})
-.delete((req,res)=>{
-  res.json({ msg: 'eliminando prestamo'});
-})
-.put((req,res)=>{
-  res.json({msg:'Ingreso Prestamo'})
-});
+router.get('/', prestamoController.consultar.bind(prestamoController));
+router.post('/', prestamoController.alta.bind(prestamoController));
+router.route('/:id')
+  .get(prestamoController.consultaByID.bind(prestamoController))
+  .put(prestamoController.modificar.bind(prestamoController))
+  .delete(prestamoController.baja.bind(prestamoController));
 
 export default router;

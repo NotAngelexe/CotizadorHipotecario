@@ -1,14 +1,17 @@
 import express from 'express';
 const router = express.Router();
+import AdministradorController from '../controllers/administradoresController.js';
 
-router.get('/', (req, res) => {
-  res.json({ msg: 'Admin' });
-});
+const administradorController = new AdministradorController();
 
-router.route("/:id")
-.get((req, res) => {
-  const {id}=req.params;
-  res.json({ msg: `has consultado al Admin ${id}`});
-});
+router.get('/', administradorController.consultar.bind(administradorController));
+router.post('/', administradorController.alta.bind(administradorController));
+router.route('/:id')
+  .get(administradorController.consultaByID.bind(administradorController))
+  .put(administradorController.modificar.bind(administradorController))
+  .delete(administradorController.baja.bind(administradorController));
+
+// Ruta para autenticación (inicio de sesión)
+router.post('/login', administradorController.autenticar.bind(administradorController));
 
 export default router;
