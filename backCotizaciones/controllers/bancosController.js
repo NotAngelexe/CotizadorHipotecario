@@ -1,9 +1,16 @@
 import db from '../database/conexion.js';
 
+/**
+ * Controlador para la gestión de los bancos en la base de datos.
+ */
 class BancoController {
   constructor() {}
 
-  // Obtener todos los bancos
+  /**
+   * Consulta todos los bancos.
+   * @param {object} req - Objeto de solicitud.
+   * @param {object} res - Objeto de respuesta.
+   */
   consultar(req, res) {
     try {
       db.query(`SELECT * FROM cotizaciones.banco`, (err, rows) => {
@@ -17,7 +24,11 @@ class BancoController {
     }
   }
 
-  // Obtener banco por ID
+  /**
+   * Consulta un banco por su ID.
+   * @param {object} req - Objeto de solicitud con el ID del banco en los parámetros.
+   * @param {object} res - Objeto de respuesta.
+   */
   consultaByID(req, res) {
     const { id } = req.params;
     try {
@@ -32,6 +43,11 @@ class BancoController {
     }
   }
 
+  /**
+   * Obtiene los plazos disponibles para un banco específico.
+   * @param {object} req - Objeto de solicitud con el ID del banco en los parámetros.
+   * @param {object} res - Objeto de respuesta.
+   */
   getPlazosByBanco(req, res) {
     const { id } = req.params;
 
@@ -59,8 +75,11 @@ class BancoController {
     }
   }
 
-
-  // Crear nuevo banco
+  /**
+   * Crea un nuevo banco.
+   * @param {object} req - Objeto de solicitud con los datos del nuevo banco.
+   * @param {object} res - Objeto de respuesta.
+   */
   alta(req, res) {
     const { nombre_banco, interes, enganche } = req.body;
     try {
@@ -79,7 +98,11 @@ class BancoController {
     }
   }
 
-  // Modificar banco
+  /**
+   * Modifica un banco existente.
+   * @param {object} req - Objeto de solicitud con los datos actualizados y el ID del banco.
+   * @param {object} res - Objeto de respuesta.
+   */
   modificar(req, res) {
     const { id } = req.params;
     const { nombre_banco, interes, enganche } = req.body;
@@ -103,9 +126,11 @@ class BancoController {
     }
   }
 
-
-
-  // // Eliminar banco
+  /**
+   * Elimina un banco (comentado).
+   * @param {object} req - Objeto de solicitud con el ID del banco.
+   * @param {object} res - Objeto de respuesta.
+   */
   // baja(req, res) {
   //   const { id } = req.params;
   //   try {

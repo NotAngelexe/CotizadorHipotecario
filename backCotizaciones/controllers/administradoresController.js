@@ -1,9 +1,16 @@
 import db from '../database/conexion.js';
 
+/**
+ * Controlador para la gestión de los administradores en la base de datos.
+ */
 class AdministradorController {
   constructor() {}
 
-  // Consultar todos los administradores
+  /**
+   * Consulta todos los administradores.
+   * @param {object} req - Objeto de solicitud.
+   * @param {object} res - Objeto de respuesta.
+   */
   consultar(req, res) {
     try {
       db.query(
@@ -21,7 +28,11 @@ class AdministradorController {
     }
   }
 
-  // Consultar un administrador por ID
+  /**
+   * Consulta un administrador por su ID.
+   * @param {object} req - Objeto de solicitud con el ID del administrador en los parámetros.
+   * @param {object} res - Objeto de respuesta.
+   */
   consultaByID(req, res) {
     try {
       const { id } = req.params;
@@ -40,7 +51,11 @@ class AdministradorController {
     }
   }
 
-  // Crear un nuevo administrador
+  /**
+   * Crea un nuevo administrador.
+   * @param {object} req - Objeto de solicitud con los datos del nuevo administrador.
+   * @param {object} res - Objeto de respuesta.
+   */
   alta(req, res) {
     try {
       const { nombre, password, correo } = req.body;
@@ -60,7 +75,11 @@ class AdministradorController {
     }
   }
 
-  // Modificar un administrador existente
+  /**
+   * Modifica un administrador existente.
+   * @param {object} req - Objeto de solicitud con los datos actualizados y el ID del administrador.
+   * @param {object} res - Objeto de respuesta.
+   */
   modificar(req, res) {
     try {
       const { id } = req.params;
@@ -85,7 +104,11 @@ class AdministradorController {
     }
   }
 
-  // Eliminar un administrador
+  /**
+   * Elimina un administrador.
+   * @param {object} req - Objeto de solicitud con el ID del administrador.
+   * @param {object} res - Objeto de respuesta.
+   */
   baja(req, res) {
     try {
       const { id } = req.params;
@@ -106,7 +129,11 @@ class AdministradorController {
     }
   }
 
-  // Autenticar administrador (inicio de sesión)
+  /**
+   * Autentica a un administrador (inicio de sesión).
+   * @param {object} req - Objeto de solicitud con el nombre y la contraseña del administrador.
+   * @param {object} res - Objeto de respuesta.
+   */
   autenticar(req, res) {
     try {
       const { nombre, password } = req.body;

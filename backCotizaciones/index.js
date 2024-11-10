@@ -7,14 +7,17 @@ import bancoRoute from './routes/bancosRoute.js';
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hola mundo');
-});
 app.use(express.json());
 app.use(cors());
+//rutas utilizadas
+
+//ruta para hacer referencia a administradores
 app.use("/administrador", administradorRoute);
+//ruta para hacer referencia a clientes
 app.use("/cliente", clientesRoute);
+//ruta para hacer referencia a prestamo
 app.use("/prestamo", prestamoRoute);
+//ruta para hacer referencia a bancos
 app.use("/banco", bancoRoute);
 
 

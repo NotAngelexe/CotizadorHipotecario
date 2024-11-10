@@ -21,6 +21,7 @@ class PrestamoController {
     }
   }
 
+  //Obtiene el prestamo por id
   getTipoPrestamoById(req, res) {
     const { id } = req.params;
 
@@ -48,6 +49,7 @@ class PrestamoController {
     }
   }
 
+  //consultar los tipos de prestamos
   getTipoPrestamo(req, res) {
     try {
       db.query(
@@ -88,6 +90,7 @@ class PrestamoController {
     }
   }
 
+  //calcular el prestamos y dar los datos
   solicitarPrestamo(req, res) {
     const { id_cliente, id_tipo_prestamo, monto_prestamo, id_banco, plazo_anos, tasa_anual, porcentaje_enganche } = req.body;
 
